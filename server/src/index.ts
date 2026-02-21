@@ -26,13 +26,14 @@ app.set("views", path.resolve(__dirname,"./views"))
 // });
 app.get("/", async (req: Request, res: Response) => {
   try {
-    const html = await ejs.renderFile(
-      __dirname + `/views/emails/welcome.ejs`,
-      { name: "Aayush" }
-    );
+    // const html = await ejs.renderFile(
+    //   __dirname + `/views/emails/welcome.ejs`,
+    //   { name: "Aayush" }
+    // );
 
-    await sendEmail("salic89233@bitoini.com", "testing SMTP", html);
+    // await sendEmail("salic89233@bitoini.com", "testing SMTP", html);
 
+    await emailQueue.add(emailQueueName,{name:"Aayush",age:24})
     return res.json({ msg: "Email sent successfully" });
 
   } catch (err) {
@@ -40,4 +41,10 @@ app.get("/", async (req: Request, res: Response) => {
     return res.status(500).json({ msg: "Email failed", err });
   }
 });
+
+// Queue
+import "./jobs/index.js";
+import { emailQueue, emailQueueName } from "./jobs/EmailJob.js";
+
+
 app.listen(PORT, () => console.log(`app listening on ${PORT}`));
