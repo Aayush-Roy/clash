@@ -20,12 +20,10 @@ app.set("views", path.resolve(__dirname, "./views"));
 // });
 app.get("/", async (req, res) => {
     try {
-        // const html = await ejs.renderFile(
-        //   __dirname + `/views/emails/welcome.ejs`,
-        //   { name: "Aayush" }
-        // );
+        const html = await ejs.renderFile(__dirname + `/views/emails/welcome.ejs`, { name: "Aayush" });
         // await sendEmail("salic89233@bitoini.com", "testing SMTP", html);
-        await emailQueue.add(emailQueueName, { name: "Aayush", age: 24 });
+        // await emailQueue.add(emailQueueName,{name:"Aayush",age:24})
+        await emailQueue.add(emailQueueName, { to: "fiyili9702@dolofan.com", subject: "Testing queue", body: html });
         return res.json({ msg: "Email sent successfully" });
     }
     catch (err) {
