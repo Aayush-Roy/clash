@@ -5,7 +5,7 @@ import "dotenv/config";
 import path from "path"
 import { fileURLToPath } from "url";
 import { sendEmail } from "./config/mail.js";
-
+import Routes from "./routes/index.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app: Application = express();
 const PORT = Number(process.env.PORT) || 7000;
@@ -17,6 +17,8 @@ app.use(express.urlencoded({extended:false}))
 
 app.set("view engine","ejs")
 app.set("views", path.resolve(__dirname,"./views"))
+
+app.use(Routes)
 
 // app.get("/", async (req: Request, res: Response) => {
 //   const html = await ejs.renderFile(__dirname+`/views/emails/welcome.ejs`,{name:"Aayush"});
@@ -34,7 +36,7 @@ app.get("/", async (req: Request, res: Response) => {
     // await sendEmail("salic89233@bitoini.com", "testing SMTP", html);
 
     // await emailQueue.add(emailQueueName,{name:"Aayush",age:24})
-    await emailQueue.add(emailQueueName,{to:"fiyili9702@dolofan.com",subject:"Testing queue",body:html});
+    await emailQueue.add(emailQueueName,{to:"ar0671362@gmail.com",subject:"Testing queue",body:html});
     return res.json({ msg: "Email sent successfully" });
 
   } catch (err) {

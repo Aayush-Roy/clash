@@ -8,7 +8,6 @@ export const registerSchema = z.object({
      password:z.string({message:"Password is required"})
     .min(6,{message:"Password must be 6 character long."}),
     confirm_password:z.string({message:"Confirm Password is required"})
-    .min(6,{message:"Confirm Password must be 6 character long."}),
-
-
-})
+    .min(6,{message:"Confirm Password must be 6 character long."})
+}) .refine((data)=>data.password===data.confirm_password,{
+        message:"Confirm Password not matched",path:["confirm_paasword"]})
