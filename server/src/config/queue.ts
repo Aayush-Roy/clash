@@ -16,6 +16,8 @@ export const defaultQueueOptions:DefaultJobOptions={
     backoff:{
         type:"exponential",
         delay:3000,
-    }
+    },
+    removeOnfail:false,
+    
 } 
 

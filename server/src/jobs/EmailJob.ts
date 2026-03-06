@@ -8,7 +8,7 @@ interface EmailJobDataType{
     to:String,
     subject:String,
     body:String
-}
+} 
 
 export const emailQueue = new Queue(emailQueueName,{
     connection:redisConnection,

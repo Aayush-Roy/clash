@@ -14,6 +14,7 @@ export const defaultQueueOptions = {
     backoff: {
         type: "exponential",
         delay: 3000,
-    }
+    },
+    removeOnfail: false,
 };
 //# sourceMappingURL=queue.js.map
